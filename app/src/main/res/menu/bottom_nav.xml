@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_about"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/about_title"
+        android:iconTint="@color/putih"/>
+    <item
+        android:id="@+id/fragment_intro"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home_title"
+        android:iconTint="@color/putih"/>
+    <item
+        android:id="@+id/fragment_scoring"
+        android:icon="@drawable/ic_baseline_forum_24"
+        android:title="@string/match_title"
+        android:iconTint="@color/putih"/>
+</menu>
