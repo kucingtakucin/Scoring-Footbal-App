@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.android.scoringapp.IntroFragment"
+        android:label="Scoring App - Intro"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_scoringFragment"
+            app:destination="@id/scoringFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoringFragment"
+        android:name="com.android.scoringapp.ScoringFragment"
+        android:label="fragment_scoring"
+        tools:layout="@layout/fragment_scoring" >
+        <action
+            android:id="@+id/action_scoringFragment_to_finishFragment"
+            app:destination="@id/finishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="com.android.scoringapp.FinishFragment"
+        android:label="fragment_finish"
+        tools:layout="@layout/fragment_finish" />
+</navigation>
