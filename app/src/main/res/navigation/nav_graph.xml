@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/scoringFragment"
         android:name="com.android.scoringapp.ScoringFragment"
-        android:label="fragment_scoring"
-        tools:layout="@layout/fragment_scoring" >
+        android:label="Scoring App - Match"
+        tools:layout="@layout/fragment_scoring">
         <action
             android:id="@+id/action_scoringFragment_to_finishFragment"
             app:destination="@id/finishFragment" />
@@ -26,11 +26,11 @@
     <fragment
         android:id="@+id/finishFragment"
         android:name="com.android.scoringapp.FinishFragment"
-        android:label="fragment_finish"
+        android:label="Scoring App - Finish"
         tools:layout="@layout/fragment_finish" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.android.scoringapp.AboutFragment"
-        android:label="fragment_about"
+        android:label="About"
         tools:layout="@layout/fragment_about" />
 </navigation>

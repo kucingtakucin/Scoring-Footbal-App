@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fragment_about"
+        android:id="@+id/aboutFragment"
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="@string/about_title"
-        android:iconTint="@color/putih"/>
+        android:iconTint="@color/putih" />
     <item
-        android:id="@+id/fragment_intro"
+        android:id="@+id/introFragment"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home_title"
         android:iconTint="@color/putih"/>
     <item
-        android:id="@+id/fragment_scoring"
+        android:id="@+id/scoringFragment"
         android:icon="@drawable/ic_baseline_forum_24"
         android:title="@string/match_title"
         android:iconTint="@color/putih"/>
