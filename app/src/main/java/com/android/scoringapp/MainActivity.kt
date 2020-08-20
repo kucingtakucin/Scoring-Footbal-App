@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
             navController = findNavController(R.id.nav_host_fragment)
             appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
             toolbarMain.setupWithNavController(navController, appBarConfiguration)
-            bottomNavigation.setupWithNavController(navController)
             navView.setupWithNavController(navController)
+            bottomNavigation.setupWithNavController(navController)
             setupActionBarWithNavController(navController, appBarConfiguration)
         }
     }

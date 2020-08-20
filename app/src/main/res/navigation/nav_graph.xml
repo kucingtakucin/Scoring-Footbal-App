@@ -22,12 +22,29 @@
         <action
             android:id="@+id/action_scoringFragment_to_finishFragment"
             app:destination="@id/finishFragment" />
+        <argument
+            android:name="team1"
+            app:argType="string"
+            android:defaultValue="team1" />
+        <argument
+            android:name="team2"
+            app:argType="string"
+            android:defaultValue="team2" />
     </fragment>
     <fragment
         android:id="@+id/finishFragment"
         android:name="com.android.scoringapp.FinishFragment"
         android:label="Scoring App - Finish"
-        tools:layout="@layout/fragment_finish" />
+        tools:layout="@layout/fragment_finish" >
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="name" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.android.scoringapp.AboutFragment"

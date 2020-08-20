@@ -9,4 +9,10 @@
     <string name="about_title">About</string>
     <string name="home_title">Home</string>
     <string name="match_title">Match</string>
+    <string name="nama_tim_1">Nama tim 1</string>
+    <string name="vs">VS</string>
+    <string name="nama_tim_2">Nama tim 2</string>
+    <string name="finished">Finished!</string>
+    <string name="dynamic_text_here">dynamic text here</string>
+    <string name="_0">0</string>
 </resources>

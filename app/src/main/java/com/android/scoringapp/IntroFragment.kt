@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.android.scoringapp.databinding.FragmentIntroBinding
 
 /**
@@ -14,7 +14,6 @@ import com.android.scoringapp.databinding.FragmentIntroBinding
  */
 class IntroFragment : Fragment() {
     private lateinit var dataBinding: FragmentIntroBinding
-    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +23,13 @@ class IntroFragment : Fragment() {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_intro, container, false)
         setHasOptionsMenu(true)
         dataBinding.apply {
+            startButton.setOnClickListener {
+                view?.findNavController()?.navigate(IntroFragmentDirections
+                    .actionIntroFragmentToScoringFragment(
+                        teamName1.text.toString(), teamName2.text.toString()
+                    )
+                )
+            }
             return root
         }
     }
@@ -34,9 +40,6 @@ class IntroFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return view?.findNavController().let {
-            NavigationUI.onNavDestinationSelected(item, it!!)
-        } or super.onOptionsItemSelected(item)
-
+        return item.onNavDestinationSelected(findNavController()) or super.onOptionsItemSelected(item)
     }
 }
