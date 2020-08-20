@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.android.scoringapp.databinding.FragmentScoringBinding
 
@@ -15,8 +17,7 @@ import com.android.scoringapp.databinding.FragmentScoringBinding
 class ScoringFragment : Fragment() {
     private lateinit var dataBinding: FragmentScoringBinding
     private lateinit var args: ScoringFragmentArgs
-    private var team1Score: Int = 0
-    private var team2Score: Int = 0
+    private lateinit var viewModel: ScoreViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,35 +25,32 @@ class ScoringFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_scoring, container, false)
+        viewModel = ViewModelProvider(this).get(ScoreViewModel::class.java)
         dataBinding.apply {
             args = arguments?.let { ScoringFragmentArgs.fromBundle(it) }!!
             teamName1.text = args.team1
             teamName2.text = args.team2
-            if (savedInstanceState !== null) {
-                scoreNum1.text = savedInstanceState.getString("Score 1")
-                scoreNum2.text = savedInstanceState.getString("Score 2")
-                team1Score = savedInstanceState.getString("Score 1")?.toInt()!!
-                team2Score = savedInstanceState.getString("Score 2")?.toInt()!!
-            }
+            scoreNum1.text = viewModel.team1Score.toString()
+            scoreNum2.text = viewModel.team2Score.toString()
+
             scoreButton1.setOnClickListener {
-                team1Score++
-                scoreNum1.text = team1Score.toString()
-                checkScore(team1Score, args.team1)
+                viewModel.updateScore(1)
+                scoreNum1.text = viewModel.team1Score.toString()
+                checkScore(viewModel.team1Score.value!!, args.team1)
             }
             scoreButton2.setOnClickListener {
-                team2Score++
-                scoreNum2.text = team2Score.toString()
-                checkScore(team2Score, args.team2)
+                viewModel.updateScore(2)
+                scoreNum2.text = viewModel.team2Score.toString()
+                checkScore(viewModel.team2Score.value!!, args.team2)
             }
-            return root
-        }
-    }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.run {
-            putString("Score 1", team1Score.toString())
-            putString("Score 2", team2Score.toString())
+            viewModel.team1Score.observe(viewLifecycleOwner, Observer {
+                scoreNum1.text = it.toString()
+            })
+            viewModel.team2Score.observe(viewLifecycleOwner, Observer {
+                scoreNum2.text = it.toString()
+            })
+            return root
         }
     }
 

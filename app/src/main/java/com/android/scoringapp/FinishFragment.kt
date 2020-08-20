@@ -25,7 +25,7 @@ class FinishFragment : Fragment() {
         dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_finish, container, false)
         args = arguments?.let { FinishFragmentArgs.fromBundle(it) }!!
         dataBinding.apply {
-            resultText.text = "${args.name} menang dengan score ${args.score}!!!"
+            resultText.text = "${args.name} menang!!!"
             return root
         }
     }
