@@ -28,7 +28,12 @@ class ScoringFragment : Fragment() {
             args = arguments?.let { ScoringFragmentArgs.fromBundle(it) }!!
             teamName1.text = args.team1
             teamName2.text = args.team2
-
+            if (savedInstanceState !== null) {
+                scoreNum1.text = savedInstanceState.getString("Score 1")
+                scoreNum2.text = savedInstanceState.getString("Score 2")
+                team1Score = savedInstanceState.getString("Score 1")?.toInt()!!
+                team2Score = savedInstanceState.getString("Score 2")?.toInt()!!
+            }
             scoreButton1.setOnClickListener {
                 team1Score++
                 scoreNum1.text = team1Score.toString()
@@ -40,6 +45,14 @@ class ScoringFragment : Fragment() {
                 checkScore(team2Score, args.team2)
             }
             return root
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.run {
+            putString("Score 1", team1Score.toString())
+            putString("Score 2", team2Score.toString())
         }
     }
 
