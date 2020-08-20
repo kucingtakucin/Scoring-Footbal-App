@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_intro" >
         <action
             android:id="@+id/action_introFragment_to_scoringFragment"
-            app:destination="@id/scoringFragment" />
+            app:destination="@id/scoringFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/scoringFragment"
@@ -21,7 +25,11 @@
         tools:layout="@layout/fragment_scoring">
         <action
             android:id="@+id/action_scoringFragment_to_finishFragment"
-            app:destination="@id/finishFragment" />
+            app:destination="@id/finishFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
             android:name="team1"
             app:argType="string"
