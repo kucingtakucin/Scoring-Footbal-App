@@ -31,38 +31,25 @@ class ScoringFragment : Fragment() {
             .get(ScoreViewModel::class.java)
         dataBinding.apply {
             args = arguments?.let { ScoringFragmentArgs.fromBundle(it) }!!
+            scoreViewModel = viewModel
             teamName1.text = args.team1
             teamName2.text = args.team2
             viewModel.apply {
-                scoreNum1.text = team1Score.toString()
-                scoreNum2.text = team2Score.toString()
-
-                scoreButton1.setOnClickListener {
-                    updateScore(1)
-                    scoreNum1.text = team1Score.toString()
-                    checkScore(team1Score.value, args.team1)
-                }
-                scoreButton2.setOnClickListener {
-                    updateScore(2)
-                    scoreNum2.text = team2Score.toString()
-                    checkScore(team2Score.value, args.team2)
-                }
-
-                team1Score.observe(viewLifecycleOwner, Observer {
-                    scoreNum1.text = it.toString()
+                setTeam(args.team1, args.team2)
+                scoreNum1.text = teamScore.value!!["team1"].toString()
+                scoreNum2.text = teamScore.value!!["team2"].toString()
+                teamScore.observe(viewLifecycleOwner, Observer {
+                    scoreNum1.text = it!!["team1"].toString()
+                    scoreNum2.text = it["team2"].toString()
                 })
-                team2Score.observe(viewLifecycleOwner, Observer {
-                    scoreNum2.text = it.toString()
+                eventFinish.observe(viewLifecycleOwner, Observer {
+                    if (it!!)
+                    view?.findNavController()?.navigate(
+                        ScoringFragmentDirections.actionScoringFragmentToFinishFragment(winners.value!!)
+                    )
                 })
             }
             return root
         }
-    }
-
-    private fun checkScore(score: Int?, name: String) {
-        if (score!! >= 5)
-        view?.findNavController()?.navigate(
-            ScoringFragmentDirections.actionScoringFragmentToFinishFragment(score, name)
-        )
     }
 }

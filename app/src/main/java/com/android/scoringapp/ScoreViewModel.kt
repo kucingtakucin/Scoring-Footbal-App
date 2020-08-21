@@ -5,31 +5,41 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ScoreViewModel : ViewModel() {
-    private var _team1Score = MutableLiveData<Int?>()
-    val team1Score: LiveData<Int?>
-        get() = _team1Score
-    private var _team2Score = MutableLiveData<Int?>()
-    val team2Score: LiveData<Int?>
-        get() = _team2Score
+    private val _teamScore = MutableLiveData<MutableMap<String?,Int?>?>()
+    val teamScore: LiveData<MutableMap<String?,Int?>?>
+        get() = _teamScore
+    private val _eventFinish = MutableLiveData<Boolean?>()
+    val eventFinish: LiveData<Boolean?>
+        get() = _eventFinish
+    private val _teamName = MutableLiveData<MutableMap<String?, String?>?>()
+    val teamName: LiveData<MutableMap<String?,String?>?>
+        get() = _teamName
+    private val _winners = MutableLiveData<String?>()
+    val winners: LiveData<String?>
+        get() = _winners
 
     init {
-        _team1Score.value = 0
-        _team2Score.value = 0
+        _teamName.value?.put("team1", "")
+        _teamName.value?.put("team2", "")
+        _teamScore.value?.put("team1", 0)
+        _teamScore.value?.put("team2", 0)
+        _eventFinish.value = false
+    }
+
+    fun setTeam(team1: String, team2: String) {
+        _teamName.value?.put("team1", team1)
+        _teamName.value?.put("team2", team2)
     }
 
     fun updateScore(team: Int) {
         when (team) {
-            1 -> _team1Score.value = _team1Score.value?.plus(1)
-            2 -> _team2Score.value = _team2Score.value?.plus(1)
+            1 -> _teamScore.value!!["team1"] = _teamScore.value!!["team1"]?.plus(1)
+            2 -> _teamScore.value!!["team2"] = _teamScore.value!!["team2"]?.plus(1)
             else -> return
         }
-    }
-
-    fun setScore(team: Int, value: Int) {
-        when (team) {
-            1 -> _team1Score.value = value
-            2 -> _team2Score.value = value
-            else -> return
-        }
+        if (_teamScore.value!!["team1"]!! >= 5 || _teamScore.value!!["team2"]!! >= 5)
+            _eventFinish.value = true
+            _winners.value = if (teamScore.value!!["team1"]!! > teamScore.value!!["team2"]!!)
+                _teamName.value!!["team1"]!! else _teamName.value!!["team2"]!!
     }
 }

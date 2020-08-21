@@ -45,10 +45,6 @@
         android:label="Scoring App - Finish"
         tools:layout="@layout/fragment_finish" >
         <argument
-            android:name="score"
-            app:argType="integer"
-            android:defaultValue="0" />
-        <argument
             android:name="name"
             app:argType="string"
             android:defaultValue="name" />
