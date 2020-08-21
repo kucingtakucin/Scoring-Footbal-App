@@ -44,13 +44,16 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:menu="@menu/bottom_nav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:itemTextColor="@color/putih" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+            android:id="@+id/nav_view_sidebar"
+            app:menu="@menu/overflow_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         dataBinding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
         dataBinding.apply {
             setSupportActionBar(toolbarMain)
-            drawerLayout = drawerLayoutContainer
             navController = findNavController(R.id.nav_host_fragment)
+            drawerLayout = drawerLayoutContainer
             appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
             toolbarMain.setupWithNavController(navController, appBarConfiguration)
-            navView.setupWithNavController(navController)
+            navViewSidebar.setupWithNavController(navController)
             bottomNavigation.setupWithNavController(navController)
             setupActionBarWithNavController(navController, appBarConfiguration)
         }

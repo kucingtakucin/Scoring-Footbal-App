@@ -9,20 +9,30 @@
         tools:context=".ScoringFragment">
 
         <TextView
+            android:id="@+id/teamName1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/nama_tim_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/teamName1" android:textSize="36sp"
-            android:layout_marginTop="88dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:text="@string/_0"
+            android:id="@+id/scoreNum1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/scoreNum1" android:textSize="36sp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/teamName1"
-            app:layout_constraintEnd_toEndOf="@+id/teamName1" app:layout_constraintStart_toStartOf="@+id/teamName1"/>
+            android:layout_marginTop="8dp"
+            android:text="@string/_0"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="@+id/teamName1"
+            app:layout_constraintStart_toStartOf="@+id/teamName1"
+            app:layout_constraintTop_toBottomOf="@+id/teamName1" />
 
         <TextView
             android:id="@+id/textView4"
@@ -49,20 +59,22 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
-            android:text="@string/nama_tim_2"
+            android:id="@+id/teamName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/teamName2" android:textSize="36sp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/scoreNum2"
+            android:layout_marginTop="8dp"
+            android:text="@string/nama_tim_2"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="@+id/scoreNum2"
             app:layout_constraintStart_toStartOf="@+id/scoreNum2"
-            app:layout_constraintEnd_toEndOf="@+id/scoreNum2"/>
+            app:layout_constraintTop_toBottomOf="@+id/scoreNum2" />
 
         <Button
             android:id="@+id/scoreButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginBottom="68dp"
             android:background="#6200EA"
             android:padding="15sp"
@@ -76,10 +88,8 @@
             android:id="@+id/scoreButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:layout_marginBottom="68dp"
             android:background="#2962FF"
             android:padding="15sp"
@@ -87,9 +97,28 @@
             android:textColor="#FFFFFF"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.267"
-            app:layout_constraintStart_toEndOf="@+id/scoreButton1" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="390dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

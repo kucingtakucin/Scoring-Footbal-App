@@ -1,33 +1,34 @@
 package com.android.scoringapp
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ScoreViewModel : ViewModel() {
-    lateinit var team1Score: MutableLiveData<Int>
-    lateinit var team2Score: MutableLiveData<Int>
+    private var _team1Score = MutableLiveData<Int?>()
+    val team1Score: LiveData<Int?>
+        get() = _team1Score
+    private var _team2Score = MutableLiveData<Int?>()
+    val team2Score: LiveData<Int?>
+        get() = _team2Score
 
     init {
-        team1Score.value = 0
-        team2Score.value = 0
-    }
-
-    override fun onCleared() {
-        super.onCleared()
+        _team1Score.value = 0
+        _team2Score.value = 0
     }
 
     fun updateScore(team: Int) {
         when (team) {
-            1 -> team1Score.value = team1Score.value?.plus(1)
-            2 -> team2Score.value = team2Score.value?.plus(1)
+            1 -> _team1Score.value = _team1Score.value?.plus(1)
+            2 -> _team2Score.value = _team2Score.value?.plus(1)
             else -> return
         }
     }
 
     fun setScore(team: Int, value: Int) {
         when (team) {
-            1 -> team1Score.value = value
-            2 -> team2Score.value = value
+            1 -> _team1Score.value = value
+            2 -> _team2Score.value = value
             else -> return
         }
     }

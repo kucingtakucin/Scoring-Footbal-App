@@ -24,38 +24,43 @@ class ScoringFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_scoring, container, false)
-        viewModel = ViewModelProvider(this).get(ScoreViewModel::class.java)
+        dataBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_scoring, container, false
+        )
+        viewModel = ViewModelProvider(this@ScoringFragment)
+            .get(ScoreViewModel::class.java)
         dataBinding.apply {
             args = arguments?.let { ScoringFragmentArgs.fromBundle(it) }!!
             teamName1.text = args.team1
             teamName2.text = args.team2
-            scoreNum1.text = viewModel.team1Score.toString()
-            scoreNum2.text = viewModel.team2Score.toString()
+            viewModel.apply {
+                scoreNum1.text = team1Score.toString()
+                scoreNum2.text = team2Score.toString()
 
-            scoreButton1.setOnClickListener {
-                viewModel.updateScore(1)
-                scoreNum1.text = viewModel.team1Score.toString()
-                checkScore(viewModel.team1Score.value!!, args.team1)
-            }
-            scoreButton2.setOnClickListener {
-                viewModel.updateScore(2)
-                scoreNum2.text = viewModel.team2Score.toString()
-                checkScore(viewModel.team2Score.value!!, args.team2)
-            }
+                scoreButton1.setOnClickListener {
+                    updateScore(1)
+                    scoreNum1.text = team1Score.toString()
+                    checkScore(team1Score.value, args.team1)
+                }
+                scoreButton2.setOnClickListener {
+                    updateScore(2)
+                    scoreNum2.text = team2Score.toString()
+                    checkScore(team2Score.value, args.team2)
+                }
 
-            viewModel.team1Score.observe(viewLifecycleOwner, Observer {
-                scoreNum1.text = it.toString()
-            })
-            viewModel.team2Score.observe(viewLifecycleOwner, Observer {
-                scoreNum2.text = it.toString()
-            })
+                team1Score.observe(viewLifecycleOwner, Observer {
+                    scoreNum1.text = it.toString()
+                })
+                team2Score.observe(viewLifecycleOwner, Observer {
+                    scoreNum2.text = it.toString()
+                })
+            }
             return root
         }
     }
 
-    private fun checkScore(score: Int, name: String) {
-        if (score >= 5)
+    private fun checkScore(score: Int?, name: String) {
+        if (score!! >= 5)
         view?.findNavController()?.navigate(
             ScoringFragmentDirections.actionScoringFragmentToFinishFragment(score, name)
         )
