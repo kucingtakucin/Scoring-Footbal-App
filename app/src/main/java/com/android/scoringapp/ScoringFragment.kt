@@ -32,16 +32,11 @@ class ScoringFragment : Fragment() {
         dataBinding.apply {
             args = arguments?.let { ScoringFragmentArgs.fromBundle(it) }!!
             scoreViewModel = viewModel
+            lifecycleOwner = this@ScoringFragment
             teamName1.text = args.team1
             teamName2.text = args.team2
             viewModel.apply {
                 setTeam(args.team1, args.team2)
-                scoreNum1.text = teamScore.value!!["team1"].toString()
-                scoreNum2.text = teamScore.value!!["team2"].toString()
-                teamScore.observe(viewLifecycleOwner, Observer {
-                    scoreNum1.text = it!!["team1"].toString()
-                    scoreNum2.text = it["team2"].toString()
-                })
                 eventFinish.observe(viewLifecycleOwner, Observer {
                     if (it!!)
                     view?.findNavController()?.navigate(

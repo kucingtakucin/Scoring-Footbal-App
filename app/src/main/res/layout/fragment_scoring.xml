@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/_0"
+            android:text='@{scoreViewModel.teamScore["team1"].toString()}'
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="@+id/teamName1"
             app:layout_constraintStart_toStartOf="@+id/teamName1"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/_0"
+            android:text='@{scoreViewModel.teamScore["team2"].toString()}'
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.512"
